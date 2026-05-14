@@ -1814,7 +1814,7 @@
     item.addEventListener('click', () => switchScreen(item.dataset.screen));
   });
 
- new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(el => {
       if (el.isIntersecting) {
         el.target.classList.add('visible');
