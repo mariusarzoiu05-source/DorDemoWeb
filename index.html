@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propunere Aplicație Mobilă — Dor de Gusturi Românești</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1a2e1a;
+    --forest-mid: #243524;
+    --forest-light: #2d4a2d;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --cream-dark: #ede5d4;
+    --text-dark: #1a1a18;
+    --text-mid: #3a3a30;
+    --text-light: #7a7a68;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--forest);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-cta {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    text-decoration: none;
+    padding: 9px 20px;
+    border: 1.5px solid var(--forest);
+    transition: all 0.3s ease;
+  }
+
+  .nav-cta:hover {
+    background: var(--forest);
+    color: var(--cream);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--forest);
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 5% 80px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+  }
+
+  .hero-grain {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    display: block; width: 28px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(245, 240, 232, 0.65);
+    max-width: 520px;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--gold);
+    color: var(--forest);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 14px 32px;
+    color: rgba(245, 240, 232, 0.7);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245, 240, 232, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .btn-ghost:hover { color: var(--cream); border-color: var(--cream); }
+
+  .hero-stats {
+    position: absolute; bottom: 48px; right: 5%;
+    display: flex; gap: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .stat { text-align: right; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.4);
+    margin-top: 4px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content { animation: fadeUp 0.8s ease 0.2s both; }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 100px 5%; }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--forest);
+  }
+
+  .section-title em { font-style: italic; }
+
+  /* ─── INTRO ─── */
+  .intro {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .intro { grid-template-columns: 1fr; gap: 48px; }
+    .hero-stats { position: static; flex-direction: row; margin-top: 48px; justify-content: flex-start; }
+    .stat { text-align: left; }
+  }
+
+  .intro-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-top: 24px;
+    font-weight: 300;
+  }
+
+  .intro-proof {
+    background: var(--forest);
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-proof::before {
+    content: '❝';
+    position: absolute; top: -10px; right: 24px;
+    font-size: 8rem;
+    color: rgba(201, 168, 76, 0.1);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+
+  .proof-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .proof-app {
+    display: flex; align-items: center; gap: 16px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(201, 168, 76, 0.2);
+  }
+
+  .proof-icon {
+    width: 48px; height: 48px;
+    background: rgba(201, 168, 76, 0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+  }
+
+  .proof-app-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .proof-app-desc {
+    font-size: 0.75rem;
+    color: rgba(245, 240, 232, 0.4);
+    margin-top: 2px;
+  }
+
+  /* ─── MODULES ─── */
+  .modules { background: var(--cream-dark); }
+
+  .modules-header { margin-bottom: 64px; }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .module-card {
+    background: var(--cream);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+  }
+
+  .module-card:hover { background: var(--forest); }
+
+  .module-card:hover .module-num,
+  .module-card:hover .module-title,
+  .module-card:hover .module-desc { color: var(--cream); }
+
+  .module-card:hover .module-icon { background: rgba(201, 168, 76, 0.15); color: var(--gold); }
+
+  .module-card:hover .module-tag { background: rgba(201, 168, 76, 0.15); color: var(--gold-light); }
+
+  .module-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+  }
+
+  .module-icon {
+    width: 44px; height: 44px;
+    background: var(--cream-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+  }
+
+  .module-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 12px;
+    transition: color 0.3s;
+  }
+
+  .module-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-light);
+    font-weight: 300;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+  }
+
+  .module-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .module-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    background: var(--cream-dark);
+    padding: 4px 10px;
+    transition: all 0.3s;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline { background: var(--forest); }
+
+  .timeline .section-title { color: var(--cream); }
+
+  .timeline-header { margin-bottom: 64px; }
+
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    position: relative;
+  }
+
+  .timeline-grid::before {
+    content: '';
+    position: absolute;
+    top: 32px; left: 0; right: 0;
+    height: 1px;
+    background: rgba(201, 168, 76, 0.2);
+  }
+
+  @media (max-width: 640px) {
+    .timeline-grid::before { display: none; }
+    .timeline-grid { grid-template-columns: 1fr; }
+  }
+
+  .phase {
+    padding: 0 32px 0 0;
+    padding-top: 64px;
+    position: relative;
+  }
+
+  .phase::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 0;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .phase-time {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .phase-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .phase-desc {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: rgba(245, 240, 232, 0.5);
+    font-weight: 300;
+  }
+
+  /* ─── TECH ─── */
+  .tech { background: var(--cream); }
+
+  .tech-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .tech-content { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  .tech-text p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    font-weight: 300;
+    margin-top: 24px;
+  }
+
+  .tech-stack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .tech-item {
+    background: var(--cream-dark);
+    padding: 20px 24px;
+    transition: background 0.2s;
+  }
+
+  .tech-item:hover { background: var(--forest); }
+  .tech-item:hover .tech-name { color: var(--cream); }
+  .tech-item:hover .tech-role { color: rgba(245,240,232,0.4); }
+
+  .tech-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--forest);
+    transition: color 0.2s;
+  }
+
+  .tech-role {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    margin-top: 3px;
+    transition: color 0.2s;
+  }
+
+  /* ─── PRICE ─── */
+  .pricing { background: var(--cream-dark); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 56px;
+  }
+
+  @media (max-width: 640px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+
+  .price-card {
+    background: var(--cream);
+    padding: 48px 40px;
+  }
+
+  .price-card.featured { background: var(--forest); }
+
+  .price-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .price-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+
+  .price-card.featured .price-title { color: var(--cream); }
+
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin: 24px 0 8px;
+  }
+
+  .price-period {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-bottom: 32px;
+  }
+
+  .price-card.featured .price-period { color: rgba(245,240,232,0.4); }
+
+  .price-features { list-style: none; }
+
+  .price-features li {
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 300;
+  }
+
+  .price-card.featured .price-features li { color: rgba(245,240,232,0.65); border-color: rgba(245,240,232,0.08); }
+
+  .price-features li::before {
+    content: '→';
+    color: var(--gold);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    background: var(--forest);
+    text-align: center;
+    padding: 120px 5%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201, 168, 76, 0.07) 0%, transparent 70%);
+  }
+
+  .cta-section .section-label { text-align: center; }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .cta-title em { font-style: italic; color: var(--gold-light); }
+
+  .cta-sub {
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.5);
+    font-weight: 300;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .cta-contact {
+    display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(201, 168, 76, 0.15);
+    position: relative;
+  }
+
+  .contact-item { text-align: center; }
+
+  .contact-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .contact-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    text-decoration: none;
+  }
+
+  .contact-value:hover { color: var(--gold-light); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #111a11;
+    padding: 32px 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: rgba(245,240,232,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 0.72rem;
+    color: rgba(245,240,232,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── DEMO ─── */
+  .demo-section {
+    background: var(--forest);
+    padding: 100px 5%;
+  }
+
+  .demo-section .section-title { color: var(--cream); }
+
+  .demo-subtitle {
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.45);
+    font-weight: 300;
+    margin-top: 16px;
+  }
+
+  .demo-header { margin-bottom: 64px; }
+
+  .demo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .demo-tabs {
+    display: flex; gap: 4px;
+    background: rgba(255,255,255,0.05);
+    padding: 4px;
+    border-radius: 2px;
+  }
+
+  .demo-tab {
+    padding: 10px 24px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    background: transparent;
+    color: rgba(245,240,232,0.4);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .demo-tab.active {
+    background: var(--gold);
+    color: var(--forest);
+  }
+
+  .phone-frame {
+    width: 300px;
+    height: 620px;
+    background: #0e1a0e;
+    border-radius: 40px;
+    border: 2px solid rgba(201,168,76,0.3);
+    box-shadow:
+      0 0 0 6px rgba(0,0,0,0.4),
+      0 40px 80px rgba(0,0,0,0.5),
+      inset 0 0 0 1px rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .phone-notch {
+    width: 100px; height: 28px;
+    background: #0e1a0e;
+    border-radius: 0 0 18px 18px;
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    z-index: 10;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .phone-screen {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    padding-top: 32px;
+  }
+
+  .app-screen {
+    position: absolute; inset: 0;
+    padding: 40px 16px 16px;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.35s ease;
+    pointer-events: none;
+    scrollbar-width: none;
+  }
+
+  .app-screen::-webkit-scrollbar { display: none; }
+
+  .app-screen.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+
+  /* topbar */
+  .app-topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .app-greeting-sub {
+    font-size: 0.65rem;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  .app-greeting-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--cream);
+  }
+
+  .app-avatar {
+    width: 32px; height: 32px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--forest);
+  }
+
+  .app-search-icon { font-size: 1.1rem; }
+
+  /* points card */
+  .app-points-card {
+    background: linear-gradient(135deg, #243524, #1a2e1a);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .app-points-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.6);
+    margin-bottom: 4px;
+  }
+
+  .app-points-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .app-points-badge {
+    font-size: 0.65rem;
+    color: var(--gold-light);
+    margin: 6px 0 10px;
+  }
+
+  .app-points-bar-wrap {
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    margin-bottom: 4px;
+    overflow: hidden;
+  }
+
+  .app-points-bar {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .app-points-progress {
+    font-size: 0.6rem;
+    color: rgba(245,240,232,0.3);
+  }
+
+  /* section title */
+  .app-section-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    margin: 12px 0 8px;
+  }
+
+  /* products row */
+  .app-products-row {
+    display: flex; gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-bottom: 12px;
+  }
+
+  .app-products-row::-webkit-scrollbar { display: none; }
+
+  .app-product-card {
+    min-width: 80px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 10px 8px;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .app-product-card:hover { border-color: rgba(201,168,76,0.4); }
+
+  .app-product-emoji { font-size: 1.4rem; margin-bottom: 4px; }
+
+  .app-product-name {
+    font-size: 0.6rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .app-product-price {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--cream);
+  }
+
+  .app-product-add {
+    position: absolute; top: 6px; right: 6px;
+    width: 16px; height: 16px;
+    background: var(--gold);
+    color: var(--forest);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  /* order status */
+  .app-order-status {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  .app-order-id {
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  .app-order-steps {
+    display: flex; align-items: center; gap: 0;
+    margin-bottom: 8px;
+  }
+
+  .app-step {
+    display: flex; flex-direction: column; align-items: center;
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.2);
+    gap: 3px;
+    min-width: 36px;
+  }
+
+  .app-step span { font-size: 0.48rem; letter-spacing: 0.03em; }
+  .app-step.done { color: var(--gold); }
+  .app-step.active { color: var(--cream); }
+
+  .app-step.pulse { animation: pulseDot 1.5s ease infinite; }
+  @keyframes pulseDot { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+
+  .app-step-line {
+    flex: 1; height: 1px;
+    background: rgba(245,240,232,0.1);
+  }
+
+  .app-step-line.done { background: var(--gold); }
+  .app-step-line.active {
+    background: linear-gradient(90deg, var(--gold), rgba(245,240,232,0.1));
+  }
+
+  .app-order-eta {
+    font-size: 0.6rem;
+    color: rgba(245,240,232,0.35);
+  }
+
+  /* categories */
+  .app-categories-row {
+    display: flex; gap: 6px; overflow-x: auto; margin-bottom: 12px;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .app-categories-row::-webkit-scrollbar { display: none; }
+
+  .app-cat {
+    white-space: nowrap;
+    font-size: 0.6rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    color: rgba(245,240,232,0.4);
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .app-cat.active {
+    background: var(--gold);
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  /* products grid */
+  .app-products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .app-grid-product {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .app-grid-product:hover { border-color: rgba(201,168,76,0.3); }
+  .app-grid-product.locked { opacity: 0.85; }
+
+  .app-grid-emoji { font-size: 1.6rem; margin-bottom: 4px; }
+
+  .app-grid-badge {
+    position: absolute; top: 6px; right: 6px;
+    font-size: 0.48rem;
+    background: rgba(201,168,76,0.2);
+    color: var(--gold);
+    padding: 2px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  .app-grid-badge.exclusive {
+    background: rgba(138,43,226,0.2);
+    color: #c084fc;
+  }
+
+  .app-grid-name {
+    font-size: 0.6rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .app-grid-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .app-grid-price {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--cream);
+  }
+
+  .app-grid-btn {
+    width: 18px; height: 18px;
+    background: var(--gold);
+    color: var(--forest);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  /* loyalty */
+  .app-loyalty-hero {
+    background: linear-gradient(135deg, #243524, #1a2e1a);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .app-loyalty-circle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .app-loyalty-num {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    margin-top: -8px;
+  }
+
+  .app-loyalty-sub {
+    position: absolute;
+    font-size: 0.5rem;
+    color: rgba(201,168,76,0.5);
+    margin-top: 24px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .app-loyalty-level {
+    font-size: 0.68rem;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 4px;
+  }
+
+  .app-loyalty-discount {
+    font-size: 0.75rem;
+    color: var(--cream);
+  }
+
+  .app-loyalty-discount strong { color: var(--gold); }
+
+  .app-scan-btn {
+    background: var(--gold);
+    color: var(--forest);
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+
+  .app-rewards-title {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+    margin-bottom: 8px;
+  }
+
+  .app-reward-item {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 6px;
+  }
+
+  .app-reward-item.unlocked { border-color: rgba(201,168,76,0.25); }
+
+  .app-reward-icon { font-size: 1.1rem; }
+
+  .app-reward-info { flex: 1; }
+
+  .app-reward-name {
+    font-size: 0.68rem;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+
+  .app-reward-pts {
+    font-size: 0.58rem;
+    color: rgba(245,240,232,0.35);
+  }
+
+  .app-reward-action {
+    font-size: 0.6rem;
+    background: var(--gold);
+    color: var(--forest);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .app-reward-action.locked {
+    background: rgba(255,255,255,0.05);
+    color: rgba(245,240,232,0.2);
+  }
+
+  /* cart */
+  .app-cart-items { margin-bottom: 10px; }
+
+  .app-cart-item {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 6px;
+  }
+
+  .app-cart-emoji { font-size: 1.2rem; }
+
+  .app-cart-info { flex: 1; }
+
+  .app-cart-name {
+    font-size: 0.65rem;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+
+  .app-cart-price {
+    font-size: 0.58rem;
+    color: rgba(201,168,76,0.6);
+  }
+
+  .app-cart-qty {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.65rem;
+    color: var(--cream);
+  }
+
+  .app-cart-qty span:first-child,
+  .app-cart-qty span:last-child {
+    width: 18px; height: 18px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+
+  .app-delivery-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .app-delivery-title {
+    font-size: 0.62rem;
+    color: rgba(245,240,232,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  .app-delivery-option {
+    font-size: 0.65rem;
+    color: rgba(245,240,232,0.5);
+    display: flex; justify-content: space-between;
+    padding: 6px 8px;
+    border-radius: 6px;
+  }
+
+  .app-delivery-option.selected {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--cream);
+  }
+
+  .app-delivery-time {
+    color: var(--gold);
+    font-size: 0.6rem;
+  }
+
+  .app-discount-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .app-discount-row {
+    display: flex; justify-content: space-between;
+    font-size: 0.62rem;
+    color: rgba(245,240,232,0.4);
+    padding: 4px 0;
+  }
+
+  .app-discount-row.gold { color: var(--gold); }
+  .app-discount-row.bold { color: var(--cream); font-weight: 600; font-size: 0.72rem; }
+
+  .app-pay-btn {
+    background: var(--gold);
+    color: var(--forest);
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+  }
+
+  /* bottom nav */
+  .app-bottom-nav {
+    display: flex;
+    background: #0d180d;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 8px 0 12px;
+  }
+
+  .app-nav-item {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    font-size: 1rem;
+    color: rgba(245,240,232,0.25);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .app-nav-item span {
+    font-size: 0.45rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .app-nav-item.active { color: var(--gold); }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Marius Arzoiu</div>
+  <a href="#contact" class="nav-cta">Solicită oferta</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Propunere tehnică · 2026</div>
+    <h1>Ecosistemul digital<br>al <em>Dor de Gusturi<br>Românești</em></h1>
+    <p class="hero-sub">Aplicație mobilă iOS & Android, sistem de fidelizare, platformă B2B pentru francizați și integrare completă cu Sedona — construit de un developer cu produse reale lansate pe piață.</p>
+    <div class="hero-actions">
+      <a href="#module" class="btn-primary">Vezi propunerea</a>
+      <a href="#contact" class="btn-ghost">Discutăm detaliile →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">2.2K+</div>
+      <div class="stat-label">Utilizatori Luma</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Module livrate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">iOS+Android</div>
+      <div class="stat-label">Un singur cod</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-text reveal">
+    <div class="section-label">De ce eu</div>
+    <h2 class="section-title">Nu promit.<br><em>Dovedesc.</em></h2>
+    <p>Sunt Marius Arzoiu, student la Informatică Aplicată la Universitatea Transilvania din Brașov și developer Android cu aplicații publicate pe Google Play.</p>
+    <p>Am construit Luma — o aplicație de wellness cu inteligență artificială, sistem de gamificare, tracking de dispoziție și chat AI — de la zero până la 2.200 de utilizatori organici, fără publicitate.</p>
+    <p>Știu să duc un proiect complet: de la prima linie de cod până la lansare în App Store și Google Play. Înțeleg atât arhitectura tehnică, cât și ce înseamnă un produs care funcționează pentru utilizatori reali.</p>
+  </div>
+  <div class="intro-proof reveal reveal-delay-2">
+    <p class="proof-quote">„Am văzut brief-ul dumneavoastră. Am analizat fiecare funcționalitate. Știu exact ce trebuie construit și cum."</p>
+    <div class="proof-app">
+      <div class="proof-icon">🌿</div>
+      <div>
+        <div class="proof-app-name">Luma — Wellness App</div>
+        <div class="proof-app-desc">Disponibil pe Google Play · 2.200+ utilizatori organici</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="modules" id="module">
+  <div class="modules-header reveal">
+    <div class="section-label">Ce construim</div>
+    <h2 class="section-title">Patru module.<br><em>Un ecosistem complet.</em></h2>
+  </div>
+  <div class="modules-grid">
+    <div class="module-card reveal">
+      <div class="module-num">01</div>
+      <div class="module-icon">🛒</div>
+      <h3 class="module-title">Magazin Online</h3>
+      <p class="module-desc">Catalog complet, comandă cu plată online, tracking în timp real al comenzii. Livrare în aceeași zi dacă există magazin în oraș, sau estimare 2-3 zile cu tracking pentru comenzi din alt depozit.</p>
+      <div class="module-tags">
+        <span class="module-tag">Netopia Payments</span>
+        <span class="module-tag">Real-time tracking</span>
+        <span class="module-tag">Same-day delivery</span>
+      </div>
+    </div>
+    <div class="module-card reveal reveal-delay-1">
+      <div class="module-num">02</div>
+      <div class="module-icon">⭐</div>
+      <h3 class="module-title">Sistem Fidelizare</h3>
+      <p class="module-desc">Scanare bon fiscal cu OCR, recunoaștere automată a sumelor și produselor, puncte diferențiate pe brand (dublu pentru marca DOR), reduceri 5–20% și produse exclusive pentru clienți fideli.</p>
+      <div class="module-tags">
+        <span class="module-tag">OCR scanare bon</span>
+        <span class="module-tag">Puncte automate</span>
+        <span class="module-tag">Produse exclusive</span>
+      </div>
+    </div>
+    <div class="module-card reveal reveal-delay-2">
+      <div class="module-num">03</div>
+      <div class="module-icon">🤝</div>
+      <h3 class="module-title">Platformă Francizați</h3>
+      <p class="module-desc">Acces dedicat B2B pentru francizați — catalog cu stocuri live, plasare rapidă de comenzi, istoric complet și statistici de volum. Ca un sistem B2B profesional, construit pentru rețeaua voastră.</p>
+      <div class="module-tags">
+        <span class="module-tag">B2B orders</span>
+        <span class="module-tag">Stocuri live</span>
+        <span class="module-tag">Statistici volum</span>
+      </div>
+    </div>
+    <div class="module-card reveal reveal-delay-3">
+      <div class="module-num">04</div>
+      <div class="module-icon">🏭</div>
+      <h3 class="module-title">Portal Producători + Sedona</h3>
+      <p class="module-desc">Producătorii văd stocurile, vânzările și necesarul estimat. Notificări automate de reaprovizionare. Integrare completă cu Sedona — stocuri, prețuri, facturi sincronizate automat.</p>
+      <div class="module-tags">
+        <span class="module-tag">Integrare Sedona</span>
+        <span class="module-tag">Reaprovizionare auto</span>
+        <span class="module-tag">Dashboard admin</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline">
+  <div class="timeline-header reveal">
+    <div class="section-label">Proces de lucru</div>
+    <h2 class="section-title" style="color:var(--cream)">De la idee la lansare<br><em style="color:var(--gold-light)">în etape clare.</em></h2>
+  </div>
+  <div class="timeline-grid">
+    <div class="phase reveal">
+      <div class="phase-time">1 Iulie · Luna 1</div>
+      <div class="phase-title">Discovery & Design</div>
+      <p class="phase-desc">Sesiuni de lucru, wireframes pentru toate ecranele, design UI aliniat la identitatea Dor de Gusturi. Aprobare înainte de coding.</p>
+    </div>
+    <div class="phase reveal reveal-delay-1">
+      <div class="phase-time">August – Septembrie</div>
+      <div class="phase-title">Backend & Integrări</div>
+      <p class="phase-desc">API-uri, baza de date, integrare Sedona, sistem de autentificare, logica de puncte. Fundația pe care se construiește totul.</p>
+    </div>
+    <div class="phase reveal reveal-delay-2">
+      <div class="phase-time">Octombrie – Noiembrie</div>
+      <div class="phase-title">Aplicație Mobilă</div>
+      <p class="phase-desc">Toate cele 4 module, testare pe dispozitive reale iOS și Android. MVP funcțional livrat la finalul lunii 4 pentru aprobare.</p>
+    </div>
+    <div class="phase reveal reveal-delay-3">
+      <div class="phase-time">Decembrie 2026</div>
+      <div class="phase-title">Lansare & Suport</div>
+      <p class="phase-desc">Publicare în App Store și Google Play, training pentru echipa voastră, 3 luni suport post-lansare inclus.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section class="tech">
+  <div class="tech-content">
+    <div class="tech-text reveal">
+      <div class="section-label">Stack tehnologic</div>
+      <h2 class="section-title">Tehnologii mature,<br><em>fără experimente.</em></h2>
+      <p>Recomand Flutter pentru aplicația mobilă — un singur cod, performanță nativă pe iOS și Android, costuri de mentenanță cu 35–40% mai mici față de două aplicații separate.</p>
+      <p>Backend construit pe Node.js cu PostgreSQL, hosted pe AWS. Infrastructură scalabilă care susține creșterea rețelei fără rewriting.</p>
+    </div>
+    <div class="tech-stack reveal reveal-delay-2">
+      <div class="tech-item">
+        <div class="tech-name">Flutter / Dart</div>
+        <div class="tech-role">iOS + Android</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">Node.js</div>
+        <div class="tech-role">Backend API</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">PostgreSQL</div>
+        <div class="tech-role">Baza de date</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">Redis</div>
+        <div class="tech-role">Cache & real-time</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">ML Kit OCR</div>
+        <div class="tech-role">Scanare bonuri</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">AWS + Docker</div>
+        <div class="tech-role">Infrastructură</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">Netopia</div>
+        <div class="tech-role">Plăți online RO</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">Sedona API</div>
+        <div class="tech-role">Integrare ERP</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="demo-section">
+  <div class="demo-header reveal">
+    <div class="section-label">Demo interactiv</div>
+    <h2 class="section-title">Cum va arăta<br><em>aplicația voastră.</em></h2>
+    <p class="demo-subtitle">Navigați prin ecranele principale — o previzualizare a experienței finale.</p>
+  </div>
+  <div class="demo-wrapper reveal reveal-delay-1">
+    <div class="demo-tabs">
+      <button class="demo-tab active" data-screen="home">Acasă</button>
+      <button class="demo-tab" data-screen="shop">Produse</button>
+      <button class="demo-tab" data-screen="loyalty">Puncte</button>
+      <button class="demo-tab" data-screen="order">Comandă</button>
+    </div>
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen" id="phoneScreen">
+        <!-- HOME SCREEN -->
+        <div class="app-screen active" id="screen-home">
+          <div class="app-topbar">
+            <div class="app-greeting">
+              <div class="app-greeting-sub">Bună dimineața,</div>
+              <div class="app-greeting-name">Călin 👋</div>
+            </div>
+            <div class="app-avatar">CD</div>
+          </div>
+          <div class="app-points-card">
+            <div class="app-points-label">Puncte acumulate</div>
+            <div class="app-points-num">320</div>
+            <div class="app-points-badge">🎁 Pachet Ferma Donca disponibil!</div>
+            <div class="app-points-bar-wrap">
+              <div class="app-points-bar" style="width:64%"></div>
+            </div>
+            <div class="app-points-progress">320 / 500 pentru reducere 20%</div>
+          </div>
+          <div class="app-section-title">Produse preferate</div>
+          <div class="app-products-row">
+            <div class="app-product-card">
+              <div class="app-product-emoji">🧀</div>
+              <div class="app-product-name">Brânză burduf</div>
+              <div class="app-product-price">24,99 lei</div>
+              <div class="app-product-add">+</div>
+            </div>
+            <div class="app-product-card">
+              <div class="app-product-emoji">🍯</div>
+              <div class="app-product-name">Miere salcâm</div>
+              <div class="app-product-price">38,00 lei</div>
+              <div class="app-product-add">+</div>
+            </div>
+            <div class="app-product-card">
+              <div class="app-product-emoji">🥩</div>
+              <div class="app-product-name">Pulpe pui fermă</div>
+              <div class="app-product-price">8,00 lei</div>
+              <div class="app-product-add">+</div>
+            </div>
+          </div>
+          <div class="app-section-title">Comandă activă</div>
+          <div class="app-order-status">
+            <div class="app-order-id">#DOR-2847</div>
+            <div class="app-order-steps">
+              <div class="app-step done">✓<span>Primită</span></div>
+              <div class="app-step-line done"></div>
+              <div class="app-step done">✓<span>Pregătire</span></div>
+              <div class="app-step-line active"></div>
+              <div class="app-step active pulse">🚚<span>Livrare</span></div>
+              <div class="app-step-line"></div>
+              <div class="app-step">📦<span>Livrat</span></div>
+            </div>
+            <div class="app-order-eta">Estimat: 14:30 — 15:00</div>
+          </div>
+        </div>
+
+        <!-- SHOP SCREEN -->
+        <div class="app-screen" id="screen-shop">
+          <div class="app-topbar">
+            <div class="app-greeting-name" style="font-size:1rem;">Produse</div>
+            <div class="app-search-icon">🔍</div>
+          </div>
+          <div class="app-categories-row">
+            <div class="app-cat active">Toate</div>
+            <div class="app-cat">Cămară</div>
+            <div class="app-cat">Lactate</div>
+            <div class="app-cat">Carne</div>
+            <div class="app-cat">Dulciuri</div>
+          </div>
+          <div class="app-products-grid">
+            <div class="app-grid-product">
+              <div class="app-grid-emoji">🧀</div>
+              <div class="app-grid-badge">DOR ×2✨</div>
+              <div class="app-grid-name">Brânză burduf 300g</div>
+              <div class="app-grid-bottom">
+                <span class="app-grid-price">24,99 lei</span>
+                <span class="app-grid-btn">+</span>
+              </div>
+            </div>
+            <div class="app-grid-product">
+              <div class="app-grid-emoji">🍯</div>
+              <div class="app-grid-badge">DOR ×2✨</div>
+              <div class="app-grid-name">Miere salcâm 500g</div>
+              <div class="app-grid-bottom">
+                <span class="app-grid-price">38,00 lei</span>
+                <span class="app-grid-btn">+</span>
+              </div>
+            </div>
+            <div class="app-grid-product">
+              <div class="app-grid-emoji">🥩</div>
+              <div class="app-grid-name">Pulpe pui fermă 1kg</div>
+              <div class="app-grid-bottom">
+                <span class="app-grid-price">8,00 lei</span>
+                <span class="app-grid-btn">+</span>
+              </div>
+            </div>
+            <div class="app-grid-product locked">
+              <div class="app-grid-emoji">🎁</div>
+              <div class="app-grid-badge exclusive">Exclusiv</div>
+              <div class="app-grid-name">Pachet Ferma Donca</div>
+              <div class="app-grid-bottom">
+                <span class="app-grid-price">320 pct.</span>
+                <span class="app-grid-btn">🔓</span>
+              </div>
+            </div>
+            <div class="app-grid-product">
+              <div class="app-grid-emoji">🧈</div>
+              <div class="app-grid-name">Unt fermă 200g</div>
+              <div class="app-grid-bottom">
+                <span class="app-grid-price">12,50 lei</span>
+                <span class="app-grid-btn">+</span>
+              </div>
+            </div>
+            <div class="app-grid-product">
+              <div class="app-grid-emoji">🍵</div>
+              <div class="app-grid-name">Ceai de munte 50g</div>
+              <div class="app-grid-bottom">
+                <span class="app-grid-price">15,00 lei</span>
+                <span class="app-grid-btn">+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOYALTY SCREEN -->
+        <div class="app-screen" id="screen-loyalty">
+          <div class="app-topbar">
+            <div class="app-greeting-name" style="font-size:1rem;">Fidelizare</div>
+          </div>
+          <div class="app-loyalty-hero">
+            <div class="app-loyalty-circle">
+              <svg viewBox="0 0 100 100" width="110" height="110">
+                <circle cx="50" cy="50" r="44" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8"/>
+                <circle cx="50" cy="50" r="44" fill="none" stroke="#c9a84c" stroke-width="8"
+                  stroke-dasharray="276" stroke-dashoffset="99" stroke-linecap="round"
+                  transform="rotate(-90 50 50)"/>
+              </svg>
+              <div class="app-loyalty-num">320</div>
+              <div class="app-loyalty-sub">puncte</div>
+            </div>
+            <div class="app-loyalty-level">Nivel: Client Fidel ⭐⭐⭐</div>
+            <div class="app-loyalty-discount">Reducere activă: <strong>10%</strong></div>
+          </div>
+          <div class="app-scan-btn">📷 Scanează bon fiscal</div>
+          <div class="app-rewards-title">Recompense disponibile</div>
+          <div class="app-reward-item unlocked">
+            <div class="app-reward-icon">🎁</div>
+            <div class="app-reward-info">
+              <div class="app-reward-name">Pachet Ferma Donca</div>
+              <div class="app-reward-pts">320 puncte · Disponibil acum</div>
+            </div>
+            <div class="app-reward-action">Ridică</div>
+          </div>
+          <div class="app-reward-item">
+            <div class="app-reward-icon">💎</div>
+            <div class="app-reward-info">
+              <div class="app-reward-name">Reducere 20%</div>
+              <div class="app-reward-pts">500 puncte · îți mai trebuie 180</div>
+            </div>
+            <div class="app-reward-action locked">🔒</div>
+          </div>
+          <div class="app-reward-item">
+            <div class="app-reward-icon">🏆</div>
+            <div class="app-reward-info">
+              <div class="app-reward-name">Produse limitate DOR</div>
+              <div class="app-reward-pts">800 puncte · îți mai trebuie 480</div>
+            </div>
+            <div class="app-reward-action locked">🔒</div>
+          </div>
+        </div>
+
+        <!-- ORDER SCREEN -->
+        <div class="app-screen" id="screen-order">
+          <div class="app-topbar">
+            <div class="app-greeting-name" style="font-size:1rem;">Comandă nouă</div>
+          </div>
+          <div class="app-cart-items">
+            <div class="app-cart-item">
+              <div class="app-cart-emoji">🧀</div>
+              <div class="app-cart-info">
+                <div class="app-cart-name">Brânză burduf 300g</div>
+                <div class="app-cart-price">24,99 lei · +8 pct. DOR</div>
+              </div>
+              <div class="app-cart-qty">
+                <span>−</span><span>1</span><span>+</span>
+              </div>
+            </div>
+            <div class="app-cart-item">
+              <div class="app-cart-emoji">🍯</div>
+              <div class="app-cart-info">
+                <div class="app-cart-name">Miere salcâm 500g</div>
+                <div class="app-cart-price">38,00 lei · +16 pct. DOR</div>
+              </div>
+              <div class="app-cart-qty">
+                <span>−</span><span>2</span><span>+</span>
+              </div>
+            </div>
+          </div>
+          <div class="app-delivery-box">
+            <div class="app-delivery-title">🚚 Livrare</div>
+            <div class="app-delivery-option selected">
+              <div>Livrare azi (magazin Brașov)</div>
+              <div class="app-delivery-time">14:00 – 17:00</div>
+            </div>
+          </div>
+          <div class="app-discount-box">
+            <div class="app-discount-row">
+              <span>Subtotal</span><span>100,99 lei</span>
+            </div>
+            <div class="app-discount-row gold">
+              <span>Reducere fidelitate (10%)</span><span>−10,10 lei</span>
+            </div>
+            <div class="app-discount-row bold">
+              <span>Total</span><span>90,89 lei</span>
+            </div>
+          </div>
+          <div class="app-pay-btn">Plătește 90,89 lei →</div>
+        </div>
+
+      </div>
+      <!-- Bottom nav -->
+      <div class="app-bottom-nav">
+        <div class="app-nav-item active" data-screen="home">🏠<span>Acasă</span></div>
+        <div class="app-nav-item" data-screen="shop">🛒<span>Produse</span></div>
+        <div class="app-nav-item" data-screen="loyalty">⭐<span>Puncte</span></div>
+        <div class="app-nav-item" data-screen="order">📦<span>Coș</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="reveal">
+    <div class="section-label">Ofertă</div>
+    <h2 class="section-title">Transparent<br><em>de la început.</em></h2>
+  </div>
+  <div style="margin-top:56px; display:flex; justify-content:center;">
+    <div class="price-card featured reveal" style="max-width:560px; width:100%; text-align:center;">
+      <div class="price-label">Ecosistem digital complet</div>
+      <div class="price-title">Toate cele 4 module + Sedona</div>
+      <div class="price-amount">8.500€</div>
+      <div class="price-period">start 1 iulie · lansare decembrie 2026 · codul sursă este al dumneavoastră integral</div>
+      <ul class="price-features" style="text-align:left;">
+        <li>Magazin online iOS + Android</li>
+        <li>Sistem fidelizare cu scanare bon OCR</li>
+        <li>Platformă B2B pentru francizați</li>
+        <li>Portal producători cu notificări auto</li>
+        <li>Integrare completă Sedona</li>
+        <li>Dashboard admin cu statistici</li>
+        <li>Publicare App Store + Google Play</li>
+        <li>3 luni suport post-lansare inclus</li>
+        <li>Training echipă inclus</li>
+      </ul>
+      <div style="margin-top:32px; padding-top:24px; border-top:1px solid rgba(245,240,232,0.08); font-size:0.78rem; color:rgba(245,240,232,0.35); font-weight:300;">
+        + Hosting & mentenanță lunară: 150–300€/lună
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="section-label">Pasul următor</div>
+  <h2 class="cta-title">Hai să discutăm<br><em>o jumătate de oră.</em></h2>
+  <p class="cta-sub">Fără angajamente. Vă explic exact cum funcționează fiecare modul,<br>ce tehnologii folosesc și cum arată un produs finalizat.</p>
+  <a href="mailto:mariusarzoiu05@gmail.com" class="btn-primary" style="position:relative;">Trimite un mesaj</a>
+  <div class="cta-contact">
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <a href="mailto:mariusarzoiu05@gmail.com" class="contact-value">mariusarzoiu05@gmail.com</a>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Aplicație lansată</div>
+      <span class="contact-value">Luma — Google Play</span>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Locație</div>
+      <span class="contact-value">Brașov, România</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Marius Arzoiu</div>
+  <div class="footer-copy">Propunere tehnică · Dor de Gusturi Românești · 2026</div>
+</footer>
+
+<script>
+  // Demo screen switching
+  function switchScreen(name) {
+    document.querySelectorAll('.app-screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.app-nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('screen-' + name)?.classList.add('active');
+    document.querySelectorAll('[data-screen="' + name + '"]').forEach(el => el.classList.add('active'));
+  }
+
+  document.querySelectorAll('.demo-tab').forEach(tab => {
+    tab.addEventListener('click', () => switchScreen(tab.dataset.screen));
+  });
+
+  document.querySelectorAll('.app-nav-item').forEach(item => {
+    item.addEventListener('click', () => switchScreen(item.dataset.screen));
+  });
+
+ new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
